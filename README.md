@@ -31,7 +31,7 @@
 	font-weight: bold;
 	}
 	body {
-	background-color: lightblue;
+	background-color: grey;
 	}
   </style>
   <script>
@@ -110,7 +110,7 @@
 
   // Form Submission Logic for Spreadsheet
   $.ajax({
-    url: "https://api.apispreadsheets.com/data/LC93Ampj4hkWMt1K/",
+    url: "https://api.apispreadsheets.com/data/QByBDhiehCwmqJoZ/",
     type: "post",
     data: {
       "Employee Name": employeeName,
@@ -131,7 +131,7 @@
 
   // Form Submission Logic for Discord webhook
   $.ajax({
-    url: "https://discord.com/api/webhooks/1269983792416948345/Uv064oeAJhHKiHG7Z0_6ozJzju6nnGDqFeJ2cLDik98vBP3b8866-x0W5GJ0JZnFYzqf",
+    url: "Fill Me",
     type: "post",
     contentType: "application/json",
     data: JSON.stringify(discordData),
@@ -159,7 +159,7 @@
 </head>
 <body>
 
-  <h2>Eclipse Motors</h2>
+  <h2>Paleto Tuners</h2>
 
   <form id="menuForm">
   <h3>Engine Upgrades</h3>
@@ -239,7 +239,7 @@
 	
 	<h3>Misc Items</h3>
     <label>
-      <input type="checkbox" class="menu-item" data-price="250"> Single Lockpick - $250 
+      <input type="checkbox" class="menu-item" data-price="250"> Single Lockpick - $2550 
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
@@ -292,7 +292,7 @@
 	
 	<h3>Towing</h3>
     <label>
-      <input type="checkbox" class="menu-item" data-price="750"> Los Santos - 750$
+      <input type="checkbox" class="menu-item" data-price="0"> Los Santos - 0$
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
