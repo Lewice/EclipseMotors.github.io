@@ -61,7 +61,7 @@
   document.getElementById('commission').innerText = commission.toFixed(2);
 }
 
-    function SubForm() {
+    function Sub() {
   // Check if the employee name is provided
   const employeeName = $("#employeeName").val();
   if (employeeName.trim() === "") {
@@ -108,7 +108,7 @@
   }]
 };
 
-  // Form Submission Logic for Spreadsheet
+  //  Submission Logic for Spreadsheet
   $.ajax({
     url: "https://api.apispreadsheets.com/data/QByBDhiehCwmqJoZ/",
     type: "post",
@@ -120,7 +120,7 @@
       "Discount Applied": discount
     },
     success: function () {
-      alert("Form Data Submitted to Spreadsheet and Discord :)");
+      alert("Please Click ok");
       // Reset the form after submission
       resetForm();
     },
