@@ -292,7 +292,7 @@
 	
 	<h3>Towing</h3>
     <label>
-      <input type="checkbox" class="menu-item" data-price="0"> Los Santos - 0$
+      <input type="checkbox" class="menu-item" data-price="750"> Los Santos - 750$
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
