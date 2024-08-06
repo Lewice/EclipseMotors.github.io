@@ -239,7 +239,7 @@
 	
 	<h3>Misc Items</h3>
     <label>
-      <input type="checkbox" class="menu-item" data-price="250"> Single Lockpick - $2550 
+      <input type="checkbox" class="menu-item" data-price="250"> Single Lockpick - $250 
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
