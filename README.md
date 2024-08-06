@@ -31,7 +31,7 @@
 	font-weight: bold;
 	}
 	body {
-	background-color: blue;
+	background-color: lightblue;
 	}
   </style>
   <script>
