@@ -110,7 +110,7 @@
 
   //  Submission Logic for Spreadsheet
   $.ajax({
-    url: "https://api.apispreadsheets.com/data/QByBDhiehCwmqJoZ/",
+    url:"https://api.apispreadsheets.com/data/QByBDhiehCwmqJoZ/",
     type: "post",
     data: {
       "Employee Name": employeeName,
