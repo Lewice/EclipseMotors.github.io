@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu Calculator and Form Submission</title>
+  <title>Shop menu</title>
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   <style>
     body, h2, form, label, p, button, select, input {
@@ -31,7 +31,7 @@
 	font-weight: bold;
 	}
 	body {
-	background-color: grey;
+	background-color: lightblue;
 	}
   </style>
   <script>
@@ -55,13 +55,20 @@
   });
 
   // Change commission rate from 5% to 10%
-  const commission = total * 0.10;
+  const commission = total * 0.20;
 
   document.getElementById('total').innerText = total.toFixed(2);
   document.getElementById('commission').innerText = commission.toFixed(2);
 }
 
-    function Sub() {
+    function SubForm() {
+  // Check if the total is not calculated
+  const total = $("#total").text().trim();
+  if (total === "") {
+    alert("Please calculate the total first!");
+    return;
+  }
+
   // Check if the employee name is provided
   const employeeName = $("#employeeName").val();
   if (employeeName.trim() === "") {
@@ -87,41 +94,31 @@
   });
 
   // Calculate total and commission
-  const total = parseFloat($("#total").text());
+  const totalValue = parseFloat($("#total").text());
   const commission = parseFloat($("#commission").text());
   const discount = parseFloat($("#discount").val());
 
-  // Prepare data for Discord webhook
-  const discordData = {
-  username: "Paleto Tuner Recipts",
-  content: `New order submitted by ${employeeName}`,
-  embeds: [{
-    title: "Order Details",
-    fields: [
-      { name: "Employee Name", value: employeeName, inline: true },
-      { name: "Total", value: `$${total.toFixed(2)}`, inline: true },
-      { name: "Commission", value: `$${commission.toFixed(2)}`, inline: true },
-      { name: "Discount Applied", value: `${discount}%`, inline: true },
-      { name: "Items Ordered", value: orderedItems.map(item => `${item.quantity}x ${item.name}`).join('\n') }
-    ],
-    color: 0x00ff00 // You can customize the color
-  }]
-};
+  // Prepare data for API submission
+  const formData = {
+    "Employee Name": employeeName,
+    "Total": totalValue.toFixed(2),
+    "Commission": commission.toFixed(2),
+    "Items Ordered": JSON.stringify(orderedItems),
+    "Discount Applied": discount
+  };
 
-  //  Submission Logic for Spreadsheet
+  // Form Submission Logic for Spreadsheet
   $.ajax({
-    url:"https://api.apispreadsheets.com/data/QByBDhiehCwmqJoZ/",
+    url: "https://api.apispreadsheets.com/data/jjm1z1IBtUX8PEIg/",
     type: "post",
-    data: {
-      "Employee Name": employeeName,
-      "Total": total.toFixed(2),
-      "Commission": commission.toFixed(2),
-      "Items Ordered": JSON.stringify(orderedItems),
-      "Discount Applied": discount
+    data: formData,
+    headers: {
+      accessKey: "c03675ad25836163cb40f1ca95c7039a",
+      secretKey: "aeb0aa04d2c29191f458d2ce91517ec8",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
     success: function () {
-      alert("Please Click ok");
-      // Reset the form after submission
+      alert("Please Click Okay!");
       resetForm();
     },
     error: function () {
@@ -129,9 +126,26 @@
     }
   });
 
+  // Prepare data for Discord webhook
+  const discordData = {
+    username: "Receipts",
+    content: `New order submitted by ${employeeName}`,
+    embeds: [{
+      title: "Order Details",
+      fields: [
+        { name: "Employee Name", value: employeeName, inline: true },
+        { name: "Total", value: `$${totalValue.toFixed(2)}`, inline: true },
+        { name: "Commission", value: `$${commission.toFixed(2)}`, inline: true },
+        { name: "Discount Applied", value: `${discount}%`, inline: true },
+        { name: "Items Ordered", value: orderedItems.map(item => `${item.quantity}x ${item.name}`).join('\n') }
+      ],
+      color: 0x00ff00 // You can customize the color
+    }]
+  };
+
   // Form Submission Logic for Discord webhook
   $.ajax({
-    url: "Fill Me",
+    url: "https://discord.com/api/webhooks/1233208020385665085/DyvQcOXAy-TycS70eqhkK67ZPJHpVgPBzf39Rm2kkfu3QNQJpjqj0me5zVDskS0m9cL6", // Replace with your Discord webhook URL
     type: "post",
     contentType: "application/json",
     data: JSON.stringify(discordData),
@@ -142,6 +156,16 @@
       console.error("Error sending data to Discord :(");
     }
   });
+
+  // Reset checkboxes and quantity inputs
+  $('.menu-item').prop('checked', false);
+  $('.quantity').val(1);
+
+  // Reset totals
+  document.getElementById('total').innerText = '';
+  document.getElementById('commission').innerText = '';
+  // Reset discount dropdown to default
+  $("#discount").val("0");
 }
 
     function resetForm() {
@@ -159,7 +183,7 @@
 </head>
 <body>
 
-  <h2>Paleto Tuners</h2>
+  <h2>Eclipse Motors</h2>
 
   <form id="menuForm">
   <h3>Engine Upgrades</h3>
@@ -239,7 +263,7 @@
 	
 	<h3>Misc Items</h3>
     <label>
-      <input type="checkbox" class="menu-item" data-price="250"> Single Lockpick - $2550 
+      <input type="checkbox" class="menu-item" data-price="250"> Single Lockpick - $250 
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
@@ -292,15 +316,15 @@
 	
 	<h3>Towing</h3>
     <label>
-      <input type="checkbox" class="menu-item" data-price="0"> Los Santos - 0$
+      <input type="checkbox" class="menu-item" data-price="750"> Los Santos - 750$
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
-      <input type="checkbox" class="menu-item" data-price="250"> Sandy - 250$
+      <input type="checkbox" class="menu-item" data-price="500"> Sandy - 500$
       <input type="number" class="quantity" value="1" min="1">
     </label>
 	<label>
-      <input type="checkbox" class="menu-item" data-price="500"> Paleto - 500$
+      <input type="checkbox" class="menu-item" data-price="250"> Paleto - 250$
       <input type="number" class="quantity" value="1" min="1">
     </label>
 	
@@ -324,9 +348,16 @@
       <input type="checkbox" class="menu-item exclude-discount" data-price="10000"> NOS (Employee) - 10,000$
       <input type="number" class="quantity" value="1" min="1">
     </label>
-	
 
-    	
+
+
+
+
+
+
+ 
+
+	
 	
 	
 	
@@ -336,7 +367,9 @@
 	<label for="discount">Select Discount:</label>
     <select id="discount" onchange="calculateTotals()">
       <option value="0">No Discount</option>
-      <option value="50">50% Discount (Employee Discount)</option>
+      <option value="15">15% Discount (Employee Discount)</option>
+      <option value="15">15% Discount (LEO Discount)</option>
+      <option value="50">Hydra 50% Discount</option>
     </select>
 	
 	<div style="margin-bottom: 30px;"></div>
@@ -351,7 +384,7 @@
 	
 
     <p>Total: $<span id="total"></span></p>
-    <p>Commission (10%): $<span id="commission"></span></p>
+    <p>Commission (15%): $<span id="commission"></span></p>
 	
 	<div style="margin-bottom: 30px;"></div>
 
