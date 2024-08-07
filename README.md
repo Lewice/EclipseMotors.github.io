@@ -290,6 +290,10 @@
       <input type="checkbox" class="menu-item" data-price="1500"> Fantastic Wax (3-4 days) - $1500
       <input type="number" class="quantity" value="1" min="1">
     </label>
+    <label>
+      <input type="checkbox" class="menu-item exclude-discount" data-price="30000"> Harness  - 30,000$
+      <input type="number" class="quantity" value="1" min="1">
+    </label>
 
 	
 	<h3>Upgrade Removal</h3>
