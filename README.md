@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop menu</title>
+  <title>West Vinewood</title>
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   <style>
     body, h2, form, label, p, button, select, input {
@@ -145,7 +145,7 @@
 
   // Form Submission Logic for Discord webhook
   $.ajax({
-    url: "https://discord.com/api/webhooks/1269983792416948345/Uv064oeAJhHKiHG7Z0_6ozJzju6nnGDqFeJ2cLDik98vBP3b8866-x0W5GJ0JZnFYzqf", // Replace with your Discord webhook URL
+    url: "https://discord.com/api/webhooks/1367604344328945774/l8l244q3kzLVJU0TFSrsrOgUWuF1M-7hOXHzRjaQEvqPo65Z1KXifw9_qXuDQevCqCU2", // Replace with your Discord webhook URL
     type: "post",
     contentType: "application/json",
     data: JSON.stringify(discordData),
@@ -183,12 +183,12 @@
 </head>
 <body>
 
-  <h2>Eclipse Motors</h2>
+  <h2>West Vinewood</h2>
 
   <form id="menuForm">
   <h3>Service Items</h3>
     <label>
-      <input type="checkbox" class="menu-item" data-price="8000"> Repair - $8000
+      <input type="checkbox" class="menu-item" data-price="6000"> Repair - $6000
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
@@ -220,7 +220,7 @@
       <input type="number" class="quantity" value="1" min="1">
     </label>
     <label>
-      <input type="checkbox" class="menu-item" data-price="20000"> Full Service - $20,000
+      <input type="checkbox" class="menu-item" data-price="25000"> Full Service - $25,000
       <input type="number" class="quantity" value="1" min="1">
     </label>
 	
